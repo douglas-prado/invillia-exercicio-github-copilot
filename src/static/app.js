@@ -10,11 +10,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const response = await fetch("/activities");
       const activities = await response.json();
 
+      console.log("Fetched activities:", activities); // Log para verificar os dados retornados
+
       // Clear loading message
       activitiesList.innerHTML = "";
 
       // Populate activities list
       Object.entries(activities).forEach(([name, details]) => {
+        console.log(`Activity: ${name}, Details:`, details); // Log para verificar detalhes de cada atividade
+
         const activityCard = document.createElement("div");
         activityCard.className = "activity-card";
 
@@ -43,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     } catch (error) {
       activitiesList.innerHTML = "<p>Failed to load activities. Please try again later.</p>";
-      console.error("Error fetching activities:", error);
+      console.error("Error fetching activities:", error); // Log para verificar erros na requisição
     }
   }
 
